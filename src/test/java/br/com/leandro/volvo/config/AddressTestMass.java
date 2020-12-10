@@ -1,6 +1,11 @@
 package br.com.leandro.volvo.config;
 
-import br.com.leandro.volvo.dto.AddressRequest;
+import java.util.Arrays;
+import java.util.List;
+
+import br.com.leandro.volvo.dto.AddressCustomerDto;
+import br.com.leandro.volvo.dto.AddressResponse;
+import br.com.leandro.volvo.dto.CustomerAddressDto;
 import br.com.leandro.volvo.entity.Address;
 import br.com.leandro.volvo.entity.AddressId;
 
@@ -10,8 +15,12 @@ public class AddressTestMass {
 		return a;
 	}
 
-	public static AddressRequest buildAddressRequest(String zipCode) {
-		return new AddressRequest(zipCode, 10);
+	public static List<Address> buildListAddress() {
+		return Arrays.asList(buildAddress("00000-000"), buildAddress("00000-001"));
+	}
+
+	public static CustomerAddressDto buildAddressRequest(String zipCode) {
+		return new CustomerAddressDto(zipCode, 10);
 	}
 
 	public static String buildAddressRequestAsString() {
@@ -22,7 +31,7 @@ public class AddressTestMass {
 				"}";
 		//@formatter:on
 	}
-	
+
 	public static String buildAddressRequestInvalidZipCodeAsString() {
 		//@formatter:off
 		return "{\r\n" + 
@@ -30,5 +39,13 @@ public class AddressTestMass {
 				"  \"zipCode\": \"000-000\"\r\n" + 
 				"}";
 		//@formatter:on
+	}
+
+	public static List<AddressResponse> buildAddressResponseList() {
+		return Arrays.asList(new AddressResponse("00000-000", 10, buildAddressCustomerDtoList()));
+	}
+
+	public static List<AddressCustomerDto> buildAddressCustomerDtoList() {
+		return Arrays.asList(new AddressCustomerDto(1L, "mock"));
 	}
 }

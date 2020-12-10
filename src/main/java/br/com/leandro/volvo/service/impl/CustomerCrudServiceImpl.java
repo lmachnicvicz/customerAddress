@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
 
-import br.com.leandro.volvo.dto.AddressRequest;
+import br.com.leandro.volvo.dto.CustomerAddressDto;
 import br.com.leandro.volvo.dto.CustomerRequest;
 import br.com.leandro.volvo.dto.CustomerResponse;
 import br.com.leandro.volvo.entity.Address;
@@ -27,13 +27,13 @@ import br.com.leandro.volvo.repository.CustomerRepository;
 import br.com.leandro.volvo.service.CustomerCrudService;
 
 @Service
-public class CustomerCrudServceImpl implements CustomerCrudService {
+public class CustomerCrudServiceImpl implements CustomerCrudService {
 
 	private CustomerRepository customerRepository;
 	private AddressRepository addressRepository;
 
 	@Autowired
-	public CustomerCrudServceImpl(CustomerRepository customerRepository, AddressRepository addressRepository) {
+	public CustomerCrudServiceImpl(CustomerRepository customerRepository, AddressRepository addressRepository) {
 		this.customerRepository = customerRepository;
 		this.addressRepository = addressRepository;
 	}
@@ -104,7 +104,7 @@ public class CustomerCrudServceImpl implements CustomerCrudService {
 
 	@Override
 	@Transactional(readOnly = false)
-	public void deleteAddress(long id, AddressRequest request) {
+	public void deleteAddress(long id, CustomerAddressDto request) {
 		Customer c = customerRepository.findById(id).orElseThrow(() -> new CustomerNotFoundException(id));
 
 		Address address = c.getAddress().stream()
@@ -141,7 +141,7 @@ public class CustomerCrudServceImpl implements CustomerCrudService {
 		response.setRegistrationDate(c.getRegistrationDate());
 		response.setLastUpdatedDate(c.getLastUpdatedDate());
 		response.setAddresses(
-				c.getAddress().stream().map(a -> new AddressRequest(a.getId().getZipCode(), a.getId().getNumber()))
+				c.getAddress().stream().map(a -> new CustomerAddressDto(a.getId().getZipCode(), a.getId().getNumber()))
 						.collect(Collectors.toList()));
 		return response;
 	}

@@ -3,18 +3,22 @@ package br.com.leandro.volvo.dto;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
-public class AddressRequest {
+import io.swagger.annotations.ApiModelProperty;
+
+public class CustomerAddressDto {
 	@NotNull
+	@ApiModelProperty(value = "Zip Code", example = "00000-000")
 	@Pattern(regexp = "^\\d{5}-\\d{3}$", message = "Wrong pattern 00000-000")
 	private String zipCode;
 	@NotNull
+	@ApiModelProperty(value = "Address Number", example = "10")
 	private int number;
 
-	public AddressRequest() {
+	public CustomerAddressDto() {
 
 	}
 
-	public AddressRequest(String zipCode, int number) {
+	public CustomerAddressDto(String zipCode, int number) {
 		super();
 		this.zipCode = zipCode;
 		this.number = number;
