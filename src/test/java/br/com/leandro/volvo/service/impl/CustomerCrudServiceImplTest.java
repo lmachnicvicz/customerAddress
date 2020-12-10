@@ -40,7 +40,7 @@ public class CustomerCrudServiceImplTest {
 	public void setup() {
 		closeable = MockitoAnnotations.openMocks(this);
 
-		service = new CustomerCrudServceImpl(customerRepository, addressRepository);
+		service = new CustomerCrudServiceImpl(customerRepository, addressRepository);
 	}
 
 	@After

@@ -3,19 +3,27 @@ package br.com.leandro.volvo.dto;
 import java.util.Date;
 import java.util.List;
 
+import io.swagger.annotations.ApiModelProperty;
+
 public class CustomerResponse {
+	@ApiModelProperty(value = "Document Id", example = "1")
 	private Long documentId;
+	@ApiModelProperty(value = "Name", example = "Joao")
 	private String name;
+	@ApiModelProperty(value = "Age", example = "30")
 	private int age;
+	@ApiModelProperty(value = "Registration Date")
 	private Date registrationDate;
+	@ApiModelProperty(value = "Last Updated Date")
 	private Date lastUpdatedDate;
-	private List<AddressRequest> addresses;
+	@ApiModelProperty(value = "List of customer addresses")
+	private List<CustomerAddressDto> addresses;
 
 	public CustomerResponse() {
 	}
 
 	public CustomerResponse(Long documentId, String name, int age, Date registrationDate, Date lastUpdatedDate,
-			List<AddressRequest> addresses) {
+			List<CustomerAddressDto> addresses) {
 		this.documentId = documentId;
 		this.name = name;
 		this.age = age;
@@ -64,11 +72,11 @@ public class CustomerResponse {
 		this.lastUpdatedDate = lastUpdatedDate;
 	}
 
-	public List<AddressRequest> getAddresses() {
+	public List<CustomerAddressDto> getAddresses() {
 		return addresses;
 	}
 
-	public void setAddresses(List<AddressRequest> addresses) {
+	public void setAddresses(List<CustomerAddressDto> addresses) {
 		this.addresses = addresses;
 	}
 

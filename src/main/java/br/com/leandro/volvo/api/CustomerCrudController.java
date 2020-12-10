@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.leandro.volvo.dto.AddressRequest;
+import br.com.leandro.volvo.dto.CustomerAddressDto;
 import br.com.leandro.volvo.dto.CustomerRequest;
 import br.com.leandro.volvo.dto.CustomerResponse;
 import br.com.leandro.volvo.service.CustomerCrudService;
@@ -88,7 +88,7 @@ public class CustomerCrudController {
 	@ApiOperation(value = "Endpoint to delete a Customer")
 	public ResponseEntity<Object> deleteAddress(
 			@ApiParam(name = "id", value = "Customer Document Id", example = "1") @PathVariable(name = "id", required = true) long id,
-			@RequestBody @Valid AddressRequest request) {
+			@RequestBody @Valid CustomerAddressDto request) {
 		service.deleteAddress(id, request);
 
 		return ResponseEntity.noContent().build();

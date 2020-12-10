@@ -2,11 +2,17 @@ package br.com.leandro.volvo.dto;
 
 import javax.validation.constraints.Pattern;
 
+import io.swagger.annotations.ApiModelProperty;
+
 public class CustomerRequest {
+	@ApiModelProperty(value = "Name", example = "Joao")
 	private String name;
+	@ApiModelProperty(value = "Age", example = "30")
 	private Integer age;
+	@ApiModelProperty(value = "Zip Code", example = "00000-000")
 	@Pattern(regexp = "^\\d{5}-\\d{3}$", message = "Wrong pattern 00000-000")
 	private String zipCode;
+	@ApiModelProperty(value = "Address number", example = "10")
 	private Integer number;
 
 	public CustomerRequest() {
